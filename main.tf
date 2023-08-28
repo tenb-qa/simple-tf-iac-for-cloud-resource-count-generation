@@ -12,3 +12,12 @@ resource "aws_ami" "tcsqe-ami" {
     encrypted   = false
   }
 }
+
+resource "aws_ami_launch_permission" "tcsqe-ami-permission" {
+  for_each = aws_ami.tcsqe-ami
+
+  image_id = each.value.id
+
+  # Allow all AWS accounts to use the AMI
+  account_ids = ["all"]
+}
