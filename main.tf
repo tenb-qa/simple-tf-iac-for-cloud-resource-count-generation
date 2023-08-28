@@ -13,14 +13,23 @@ resource "aws_ami" "tcsqe-ami" {
   }
 }
 
-resource "aws_ami_launch_permission" "tcsqe-ami-permission" {
+resource "aws_ami_launch_permission" "tcsqe-ami-permission1" {
   for_each = aws_ami.tcsqe-ami
   image_id = each.value.id
-  # Allow all AWS accounts to use the AMI
-  account_id = ["536274239938","748423932433","987710583002","068347883986","178079460366"]
+  # Allow multiple
+  account_id = "536274239938","748423932433","987710583002","068347883986","178079460366"
 }
 
-resource "aws_ami_public_permission" "tcsqe-ami-public-permission" {
+resource "aws_ami_launch_permission" "tcsqe-ami-permission2" {
   for_each = aws_ami.tcsqe-ami
   image_id = each.value.id
+  # Allow multiple
+  account_id = "748423932433","987710583002","068347883986","178079460366"
+}
+
+resource "aws_ami_launch_permission" "tcsqe-ami-permission3" {
+  for_each = aws_ami.tcsqe-ami
+  image_id = each.value.id
+  # Allow multiple
+  account_id = "987710583002"
 }
