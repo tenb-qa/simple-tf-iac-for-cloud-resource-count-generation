@@ -19,5 +19,5 @@ resource "aws_ami_launch_permission" "tcsqe-ami-permission" {
   image_id = each.value.id
 
   # Allow all AWS accounts to use the AMI
-  account_ids = ["all"]
+  account_id = ["all"]
 }
